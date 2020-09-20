@@ -9,7 +9,7 @@ const { getOwnerInstance } = require('powercord/util');
 const { name, shorthand } = require('./manifest.json'); // -> name: 'Project Name', shorthand: 'pName'
 
 /* Settings */
-const Settings = require('./Settings.jsx');
+const Settings = require('./Components/Settings.jsx');
 
 module.exports = class MyPlugin extends Plugin {
     /* Entry Point */
@@ -31,8 +31,7 @@ module.exports = class MyPlugin extends Plugin {
         const injectInto = await getModule(
             m => m.default && m.default.displayName === 'MessageContextMenu'
         );
-        console.log('SETTINGS');
-        console.log(this.settings.get('displayCat'));
+
         /**
          * The following injects a function into the specified module.
          * Parameter 1: The InjectionID, used to uninject.
