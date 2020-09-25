@@ -14,6 +14,9 @@ const Settings = require('./Components/Settings.jsx');
 module.exports = class MyPlugin extends Plugin {
     /* Entry Point */
     async startPlugin() {
+        /* CSS/SCSS - Used for styling */
+        this.loadStylesheet('style.scss');
+
         /* Register Settings */
         powercord.api.settings.registerSettings(shorthand, {
             category: this.entityID,
