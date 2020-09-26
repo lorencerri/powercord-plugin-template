@@ -1,6 +1,6 @@
 # powercord-plugin-template
 
-Personal powercord plugin template, feel free to use this, although keep in mind I have no idea what I'm doing.
+Personal powercord plugin template, feel free to use this, although keep in my I don't really know what I'm doing.
 
 | Preview                                 | Settings                            |
 | --------------------------------------- | ----------------------------------- |
