@@ -5,8 +5,6 @@ const { getModule } = require('powercord/webpack');
 
 /* Plugin Specific Packages */
 const { ContextMenu } = require('powercord/components');
-const { getOwnerInstance } = require('powercord/util');
-const { name, shorthand } = require('./manifest.json'); // -> name: 'Project Name', shorthand: 'pName'
 
 /* Settings */
 const Settings = require('./Components/Settings.jsx');
@@ -18,9 +16,9 @@ module.exports = class MyPlugin extends Plugin {
         this.loadStylesheet('style.scss');
 
         /* Register Settings */
-        powercord.api.settings.registerSettings(shorthand, {
+        powercord.api.settings.registerSettings(this.entityID, {
             category: this.entityID,
-            label: name, // Label that appears in the settings menu
+            label: this.manifest.name, // Label that appears in the settings menu
             render: Settings // The React component to render. In this case, the imported Settings file
         });
 
@@ -42,7 +40,7 @@ module.exports = class MyPlugin extends Plugin {
          * 3: The function name you want to target.
          * 4: The function you want to inject.
          */
-        inject(shorthand, injectInto, 'default', (event, res) => {
+        inject('my-plugin-image-menu', injectInto, 'default', (event, res) => {
             const target = event[0].target;
 
             /** Only add to the Menu when the target is an image
@@ -56,7 +54,7 @@ module.exports = class MyPlugin extends Plugin {
                         {
                             type: 'button',
                             name: `Display ${displayCat ? 'Cat' : 'Dog'}`,
-                            id: `${shorthand}-button` /* When adding items, make sure all of the id's are different */,
+                            id: `toPetButton` /* When adding items, make sure all of the id's are different */,
                             onClick: () => {
                                 /* This is the function that is executed when the button is clicked */
                                 target.src = displayCat
@@ -74,7 +72,7 @@ module.exports = class MyPlugin extends Plugin {
 
     pluginWillUnload() {
         // When the plugin is unloaded, we need to unregister/uninject anything we've registered/injected.
-        powercord.api.settings.unregisterSettings(shorthand);
-        uninject(shorthand);
+        powercord.api.settings.unregisterSettings(this.entityID);
+        uninject('my-plugin-image-menu');
     }
 };
