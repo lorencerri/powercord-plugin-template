@@ -35,7 +35,7 @@ module.exports = class MyPlugin extends Plugin {
 
         /**
          * The following injects a function into the specified module.
-         * Parameter 1: The InjectionID, used to uninject.
+         * Parameter 1: The InjectionID, used to uninject (should be unique).
          * 2: The module you want to inject into.
          * 3: The function name you want to target.
          * 4: The function you want to inject.
