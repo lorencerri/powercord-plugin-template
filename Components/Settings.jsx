@@ -12,14 +12,12 @@ module.exports = class Settings extends React.PureComponent {
      * */
 
     render() {
-        const { getSetting, toggleSetting } = this.props;
-
         return (
             <div>
                 <SwitchItem
-                    value={getSetting('displayCat', true)} // The second parameter is the default setting
+                    value={this.props.getSetting('displayCat', true)} // The second parameter is the default setting
                     onChange={() => {
-                        toggleSetting('displayCat', true); // The second parameter is the default setting
+                        this.props.toggleSetting('displayCat', true); // The second parameter is the default setting
                     }}
                     note='If disabled, the image will change to a dog instead.'
                 >
